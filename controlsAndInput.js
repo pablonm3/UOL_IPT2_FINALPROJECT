@@ -3,17 +3,14 @@
 function ControlsAndInput(){
 	
 	this.menuDisplayed = true;
-	
-	//playback button displayed in the top left of the screen
-	this.playbackButton = new PlaybackButton();
 	this.menu = new Menu()
-	//this.songControls = SongControls()
+	this.songControls = new SongControls()
 
 	//make the window fullscreen or revert to windowed
 	this.mousePressed = function(){
 		console.log("mouse click")
 		this.menu.mousePressed()
-		this.playbackButton.hitCheck()
+		this.songControls.mousePressed()
 		return false
 	};
 
@@ -44,10 +41,7 @@ function ControlsAndInput(){
 		stroke("black");
 		strokeWeight(2);
 		textSize(34);
-		//this.songControls.draw()
-
-		//playback button 
-		this.playbackButton.draw();
+		this.songControls.draw()
 		//only draw the menu if menu displayed is set to true.
 		if(this.menuDisplayed){
 			this.menu.draw();
@@ -58,17 +52,69 @@ function ControlsAndInput(){
 }
 
 function SongControls(){
-	this.width = 200
-	this.height = 20
+	this.width = 290
+	this.height = 30
+	this.playbackButton = new PlaybackButton();
+	this.backButton = new BackButton();
+	this.nextButton = new NextButton();
 
 	this.songName = "Default Song"
 
+	this.mousePressed = function(){
+		var r1 = this.playbackButton.hitCheck()
+		var r2 = this.backButton.hitCheck()
+		var r3 = this.nextButton.hitCheck()
+		return r1 || r2 || r3
+	};
+
 	this.draw = function(){
+		push()
+
+		// RENDER BOX
 		max_height = window.innerHeight
 		max_width = window.innerWidth
-		start_x = max_width/2 - this.width/2
-		fill('#009999');
-		rect(start_x, 10, this.width, this.height, 20);
+		box_x = max_width/2 - this.width/2
+		box_y = 10
+		fill('black');
+		stroke("#00B200")
+		rect(box_x, box_y, this.width, this.height, 10);
+
+
+		// RENDER SONG NAME
+		stroke("#00B200")
+		text_height = 12
+		noFill()
+		textSize(text_height)
+		text_width = 100
+		text_y = box_y + this.height/2 - text_height/2
+		buffer = 20 // add a buffer to separate buttons from text
+		text_x = box_x + this.width/3 + buffer
+		console.log("text_y: ", text_y)
+		text(this.songName, text_x, text_y, text_width, text_height);
+		
+
+		//RENDER BUTTONS
+		btn_width = 12
+		btn_height = 12
+		btn_buffer = 12
+
+		//back btn
+		back_x = box_x + buffer
+		back_y = text_y
+		this.backButton.draw(back_x, back_y, btn_width, btn_height);
+
+
+		// play btn
+		play_x = back_x + btn_width + btn_buffer
+		play_y = back_y 
+		this.playbackButton.draw(play_x, play_y, btn_width, btn_height);
+
+		//next btn
+		next_x = play_x + btn_width + btn_buffer
+		next_y = text_y
+		this.nextButton.draw(next_x, next_y, btn_width, btn_height);
+
+		pop()
 	}
 
 }
@@ -78,7 +124,7 @@ function SongControls(){
 function Menu(){
 	this.menuOptions = []
 	menu_size = 400
-	this.rendered = false
+	this.rendered = false 
 
 
 	this.loadOptions = function(max_height, max_width, menu_start_x){

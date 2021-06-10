@@ -1,16 +1,20 @@
 //displays and handles clicks on the playback button.
-function PlaybackButton(){
+function PlaybackButton(x=20, y=20, width=20, height=20){
 	
-	this.x = 20;
-	this.y = 20;
-	this.width = 20;
-	this.height = 20;
+	this.x = x;
+	this.y = y;
+	this.width = width;
+	this.height = height;
 
 	//flag to determine whether to play or pause after button click and
 	//to determine which icon to draw
 	this.playing = false;
 
-	this.draw = function(){
+	this.draw = function(x=20, y=20, width=20, height=20){
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
 		if(this.playing){
 			rect(this.x, this.y, this.width/2 - 2, this.height);
 			rect(this.x + (this.width/2 + 2), this.y, this.width/2 - 2, this.height);
