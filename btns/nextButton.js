@@ -1,5 +1,5 @@
 //displays and handles clicks on the playback button.
-function NextButton(x=20, y=20, width=20, height=20){
+function NextButton(on_click, x=20, y=20, width=20, height=20){
 	
 	this.x = x;
 	this.y = y;
@@ -38,6 +38,7 @@ function NextButton(x=20, y=20, width=20, height=20){
 			this.draw()
 		}, 500)
         //TODO: CHANGE SONG
+		on_click()
 	}
 
 

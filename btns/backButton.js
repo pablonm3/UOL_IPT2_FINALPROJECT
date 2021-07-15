@@ -1,5 +1,5 @@
 //displays and handles clicks on the playback button.
-function BackButton(x=20, y=20, width=20, height=20){
+function BackButton(on_click, x=20, y=20, width=20, height=20){
 	
 	this.x = x;
 	this.y = y;
@@ -37,7 +37,7 @@ function BackButton(x=20, y=20, width=20, height=20){
 			this.font_color = DEFAULT_FONT_COLOR
 			this.draw()
 		}, 500)
-        //TODO: CHANGE SONG
+        on_click()
 	}
 
 

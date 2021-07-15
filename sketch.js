@@ -2,14 +2,9 @@
 var controls = null;
 //store visualisations in a container
 var vis = null;
-//variable for the p5 sound object
-var sound = null;
 //variable for p5 fast fourier transform
 var fourier;
 
-function preload(){
-	sound = loadSound('assets/stomper_reggae_bit.mp3');
-}
 
 function setup(){
 	 createCanvas(window.innerWidth, window.innerHeight);
@@ -25,6 +20,7 @@ function setup(){
 	 vis.add(new Spectrum());
 	 vis.add(new WavePattern());
 	 vis.add(new Needles());
+	 vis.add(new GeometricShapes());
 
 }
 

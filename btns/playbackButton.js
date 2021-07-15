@@ -1,10 +1,13 @@
 //displays and handles clicks on the playback button.
-function PlaybackButton(x=20, y=20, width=20, height=20){
+function PlaybackButton(isPlaying, onPlay, onPause, x=20, y=20, width=20, height=20){
 	
 	this.x = x;
 	this.y = y;
 	this.width = width;
 	this.height = height;
+	this.isPlaying = isPlaying
+	this.onPlay = onPlay
+	this.onPause = onPause
 
 	//flag to determine whether to play or pause after button click and
 	//to determine which icon to draw
@@ -29,10 +32,10 @@ function PlaybackButton(x=20, y=20, width=20, height=20){
 	//@returns true if clicked false otherwise.
 	this.hitCheck  = function(){
 		if(mouseX > this.x && mouseX < this.x + this.width && mouseY > this.y && mouseY < this.y + this.height){
-			if (sound.isPlaying()) {
-    			sound.pause();
+			if (this.isPlaying()) {
+    			this.onPause();
   			} else {
-    			sound.loop();
+    			this.onPlay();
   			}
   			this.playing = !this.playing;
   			return true;
