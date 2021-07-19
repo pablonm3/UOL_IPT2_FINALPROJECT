@@ -2,6 +2,12 @@
 function WavePattern() {
 	//vis name
 	this.name = "wavepattern";
+	this.legend = [];
+
+
+	this.keyPressed = function(keycode){
+        
+    }
 
 	//draw the wave form to the screen
 	this.draw = function() {

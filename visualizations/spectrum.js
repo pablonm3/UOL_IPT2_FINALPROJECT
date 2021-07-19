@@ -1,5 +1,10 @@
 function Spectrum(){
 	this.name = "spectrum";
+	this.legend = [];
+
+	this.keyPressed = function(keycode){
+        
+    }
 
 	this.draw = function(){
 		push();

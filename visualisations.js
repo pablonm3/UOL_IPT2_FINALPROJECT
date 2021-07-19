@@ -1,5 +1,5 @@
 //container function for the visualisations
-function Visualisations(){
+function Visualisations(on_viz_change){
 	//array to store visualisations
 	this.visuals = [];
 	//currently selected vis. set to null until vis loaded in
@@ -22,6 +22,7 @@ function Visualisations(){
 		for(var i = 0; i < this.visuals.length; i++){
 			if(visName == this.visuals[i].name){
 				this.selectedVisual = this.visuals[i];
+				on_viz_change(this.selectedVisual)
 			}
 		}
 	};

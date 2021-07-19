@@ -2,6 +2,7 @@
 function Needles() {
 	//name of the visualisation
 	this.name = "needles";
+	this.legend = [];
 
 	//how large is the arc of the needle plot.
 	var minAngle = PI + PI / 10;
@@ -23,6 +24,11 @@ function Needles() {
 	};
 	//call onResize to set initial values when the object is created
 	this.onResize();
+
+
+	this.keyPressed = function(keycode){
+        
+    }
 
 	// draw the plots to the screen
 	this.draw = function() {

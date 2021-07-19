@@ -5,7 +5,12 @@ function ControlsAndInput(){
 	this.menuDisplayed = true;
 	this.player = new Player()
 	this.menu = new Menu(this.player)
+	this.legend = new Legend()
 	this.songControls = new SongControls(this.player)
+
+	this.change_legend = function(extra_options) {
+		this.legend.set_extra_options(extra_options)	
+	}
 
 	//make the window fullscreen or revert to windowed
 	this.mousePressed = function(){
@@ -28,7 +33,7 @@ function ControlsAndInput(){
 			// ESC key pressed, toggle menu
 			this.menuDisplayed = !this.menuDisplayed;
 		}
-
+		vis.selectedVisual.keyPressed(keycode)
 		// if(keycode > 48 && keycode < 58){
 		// 	var visNumber = keycode - 49;
 		// 	vis.selectVisual(vis.visuals[visNumber].name); 
@@ -47,6 +52,7 @@ function ControlsAndInput(){
 		if(this.menuDisplayed){
 			this.menu.draw();
 		}	
+		this.legend.draw()
 		pop();
 
 	};

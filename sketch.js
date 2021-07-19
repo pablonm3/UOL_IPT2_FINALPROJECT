@@ -16,7 +16,9 @@ function setup(){
 	 fourier = new p5.FFT();
 
 	 //create a new visualisation container and add visualisations
-	 vis = new Visualisations();
+	 vis = new Visualisations((selectedVisual)=>{
+		controls.change_legend(selectedVisual.legend)	 
+	 });
 	 vis.add(new Spectrum());
 	 vis.add(new WavePattern());
 	 vis.add(new Needles());
