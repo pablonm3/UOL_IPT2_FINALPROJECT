@@ -26,7 +26,7 @@ function Legend(){
         
         // RENDER OPTIONS TEXT
         text_height = 12
-        text_width = 200
+        text_width = 170
 		text_y = box_y + this.height/2 - text_height/2
         textSize(text_height)
         var pointer_x = box_x + 10
