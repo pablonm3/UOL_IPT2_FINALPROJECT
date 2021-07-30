@@ -1,10 +1,5 @@
 function Spectrum(){
-	this.name = "spectrum";
-	this.legend = [];
-
-	this.keyPressed = function(keycode){
-        
-    }
+	Visualization.call(this, "spectrum")
 
 	this.draw = function(){
 		push();

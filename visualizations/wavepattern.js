@@ -1,13 +1,6 @@
 //draw the waveform to the screen
 function WavePattern() {
-	//vis name
-	this.name = "wavepattern";
-	this.legend = [];
-
-
-	this.keyPressed = function(keycode){
-        
-    }
+	Visualization.call(this, "wavepattern")
 
 	//draw the wave form to the screen
 	this.draw = function() {

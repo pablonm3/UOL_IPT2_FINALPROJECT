@@ -1,8 +1,9 @@
 
-function gen_random_color(){
-    var r = random(255); // r is a random number between 0 - 255
-    var g = random(255); // g is a random number betwen 100 - 200
-    var b = random(255); // b is a random number between 0 - 100
+function gen_random_color(temperature=0.5){
+    // temperature must be between 0(coolest) to 1(warmest)
+    var r = random(220 * temperature, 255 * temperature); 
+    var g = random(255);
+    var b = random(220 * (1-temperature), 255 * (1-temperature)); 
     return [r,g,b]
 }
 
@@ -18,45 +19,56 @@ function polygon(x, y, radius, npoints) {
   }
 
 function GeometricShapes(){
-	this.name = "Geometrical shapes";
-    this.legend = ["[←→] change colors", "[↑↓] incr/decr no of figures"];
-    this.no_shapes = 3;
+    Visualization.call(this, "Geometrical shapes", ["[←→] change colors", "[↑↓] incr/decr no of figures"])
+	this.no_shapes = 3;
 
-    var colors = [{colors_ep: gen_random_color(),
-        colors_re: gen_random_color(),
-        colors_tri: gen_random_color(),
-        colors_pol: gen_random_color()}];
-        color_index = 0
+    var colors = [],
+        color_index
+        
 
     this.inc_no_shapes = function(){
         if(this.no_shapes <4){
             this.no_shapes +=1
+            this.reset_colors()
         }
     }
 
     this.dec_no_shapes = function(){
         if(this.no_shapes > 1){
             this.no_shapes -=1
+            this.reset_colors()
         }
+    }
+
+    this.reset_colors = function(){
+        colors = []
+        color_index = -1
+        this.next_colors()
+    }
+
+    this.gen_colors_object = function(){
+        var increment = 1/this.no_shapes;
+        if(increment == 1){
+            increment = 0.5;
+        }
+        console.error("increment: ", increment)
+        return {colors_ep: gen_random_color(increment *4),
+            colors_re: gen_random_color(increment * 2),
+            colors_tri: gen_random_color(increment),
+            colors_pol: gen_random_color(increment *3)}
     }
 
     this.next_colors = function(){
         color_index += 1
         if(color_index >= colors.length){
-            colors.push({colors_ep: gen_random_color(),
-                colors_re: gen_random_color(),
-                colors_tri: gen_random_color(),
-                colors_pol: gen_random_color()})
+            colors.push(this.gen_colors_object())
         }
     }
     this.back_colors = function(){
         color_index -= 1
         if(color_index <=0){
             color_index = 0    
-            colors.unshift({colors_ep: gen_random_color(),
-                colors_re: gen_random_color(),
-                colors_tri: gen_random_color(),
-                colors_pol: gen_random_color()})
+            colors.unshift(this.gen_colors_object())
         }
     }
 
@@ -196,4 +208,5 @@ function GeometricShapes(){
 
 		pop();
 	};
+    this.reset_colors()
 }

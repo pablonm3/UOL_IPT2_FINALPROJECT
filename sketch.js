@@ -4,10 +4,12 @@ var controls = null;
 var vis = null;
 //variable for p5 fast fourier transform
 var fourier;
-
+var capture
 
 function setup(){
 	 createCanvas(window.innerWidth, window.innerHeight);
+	 capture = createCapture(VIDEO);
+	 capture.hide()
 	 console.log("window.innerHeight: ", window.innerHeight)
 	 background(0);
 	 controls = new ControlsAndInput();
@@ -23,6 +25,7 @@ function setup(){
 	 vis.add(new WavePattern());
 	 vis.add(new Needles());
 	 vis.add(new GeometricShapes());
+	 vis.add(new Camera());
 
 }
 

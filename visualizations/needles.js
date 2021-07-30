@@ -1,9 +1,7 @@
 //constructor function to draw a
 function Needles() {
-	//name of the visualisation
-	this.name = "needles";
-	this.legend = [];
-
+	Visualization.call(this, "needles")
+	
 	//how large is the arc of the needle plot.
 	var minAngle = PI + PI / 10;
 	var maxAngle = TWO_PI - PI / 10;
@@ -25,10 +23,6 @@ function Needles() {
 	//call onResize to set initial values when the object is created
 	this.onResize();
 
-
-	this.keyPressed = function(keycode){
-        
-    }
 
 	// draw the plots to the screen
 	this.draw = function() {

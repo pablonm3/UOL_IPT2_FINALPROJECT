@@ -36,7 +36,6 @@ function SongControls(player){
 		text_y = box_y + this.height/2 - text_height/2
 		buffer = 20 // add a buffer to separate buttons from text
 		text_x = box_x + this.width/3 + buffer
-		console.log("text_y: ", text_y)
 		const songName = this.player.current_song()
 		text(songName, text_x, text_y, text_width, text_height);
 		
