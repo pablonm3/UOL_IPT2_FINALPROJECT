@@ -1,5 +1,5 @@
 function SongControls(player){
-	this.width = 350
+	this.width = 400
 	this.height = 30
 	this.player = player
 	this.playbackButton = new PlaybackButton(this.player.isPlaying, this.player.play, this.player.pause);
