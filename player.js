@@ -5,27 +5,36 @@ function Player(){
     var defaultSong = 'assets/stomper_reggae_bit.mp3'//new File([], 'assets/stomper_reggae_bit.mp3');
     var songs = [defaultSong]
     var currentSong = 0
+    this.playing = false;
 
 
-    function load_song(index, callback){
+    this.load_song = function(index, callback){
         var song = songs[index]
         sound = loadSound(song, callback);
         currentSong = index
+        sound.onended(()=>{
+            //when some finishes move to next one in the list
+            if(this.playing){
+                this.next()
+            }
+        })
     }
-    load_song(0)
+    this.load_song(0)
 
     this.play = function(){
-		sound.loop();
+        this.playing = true;
+		sound.play();
     }
     
     this.pause = function(){
+        this.playing = false;
         sound.pause();
     }
 
     this.next = function(){
         this.pause()
         new_song = (currentSong+1) % (songs.length)
-        load_song(new_song, ()=>{
+        this.load_song(new_song, ()=>{
             this.play()
         })
     }
@@ -36,7 +45,7 @@ function Player(){
         if(new_song < 0){
             new_song = songs.length -1
         }
-        load_song(new_song, ()=>{
+        this.load_song(new_song, ()=>{
             this.play()
         })
     }
@@ -58,5 +67,8 @@ function Player(){
     }
     this.next = this.next.bind(this)
     this.back = this.back.bind(this)
+    this.pause = this.pause.bind(this)
+    this.play = this.play.bind(this)
+    this.load_song = this.load_song.bind(this)
 
 }

@@ -51,7 +51,6 @@ function GeometricShapes(){
         if(increment == 1){
             increment = 0.5;
         }
-        console.error("increment: ", increment)
         return {colors_ep: gen_random_color(increment *4),
             colors_re: gen_random_color(increment * 2),
             colors_tri: gen_random_color(increment),

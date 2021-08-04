@@ -122,7 +122,6 @@ function MenuOption(option_text, xLoc, yLoc, menu_width, menu_x_loc, on_click){
 	this.mousePressed = function(){
 		//TODO: check if user clicked option and run action: https://www.youtube.com/watch?v=DEHsr4XicN8&ab_channel=TheCodingTrain
 		if(mouseX >= this.xLoc && mouseX <= (this.xLoc + WIDTH - this.x_buffer_menu_text) && mouseY >= this.yLoc && mouseY <= (this.yLoc + HEIGHT)){
-			console.error("clicked option")
 			this.selectOption()
 		}
 		return false

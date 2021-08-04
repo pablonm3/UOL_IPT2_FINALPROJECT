@@ -9,22 +9,18 @@ function PlaybackButton(isPlaying, onPlay, onPause, x=20, y=20, width=20, height
 	this.onPlay = onPlay
 	this.onPause = onPause
 
-	//flag to determine whether to play or pause after button click and
-	//to determine which icon to draw
-	this.playing = false;
 
 	this.draw = function(x=20, y=20, width=20, height=20){
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		if(this.playing){
+		if(this.isPlaying()){
 			rect(this.x, this.y, this.width/2 - 2, this.height);
 			rect(this.x + (this.width/2 + 2), this.y, this.width/2 - 2, this.height);
 		}
 		else{	
 			triangle(this.x, this.y, this.x + this.width, this.y + this.height/2, this.x, this.y+this.height);
-
 		}
 	};
 
@@ -37,7 +33,6 @@ function PlaybackButton(isPlaying, onPlay, onPause, x=20, y=20, width=20, height
   			} else {
     			this.onPlay();
   			}
-  			this.playing = !this.playing;
   			return true;
 		}
 			return false;
