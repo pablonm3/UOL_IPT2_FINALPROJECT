@@ -3,6 +3,7 @@ function Menu(player){
 	menu_size = 400
 	this.rendered = false 
 	this.player = player
+	this.menuDisplayed = true;
 
 	this.loadOptions = function(max_height, max_width, menu_start_x){
 		console.log(`max_height: ${max_height}, max_width: ${max_width}, menu_start_x: ${menu_start_x}`)
@@ -42,7 +43,14 @@ function Menu(player){
 		})
 	}
 
+	this.toggle_show = function(){
+		this.menuDisplayed = !this.menuDisplayed;
+	}
+
 	this.draw = function(){
+		if(!this.menuDisplayed){
+			return;
+		}
 		max_height = window.innerHeight
 		max_width = window.innerWidth
 		menu_start_x = max_width/2 -  menu_size/2
@@ -60,11 +68,13 @@ function Menu(player){
 	}
 
 	this.mousePressed = function() {
-		console.log("Clicked inside MENU!!")
+		if(!this.menuDisplayed){
+			return;
+		}
 		this.menuOptions.forEach(e => {
 			e.mousePressed()
 		});
-		return false
+		return;
 	  }
 
 }

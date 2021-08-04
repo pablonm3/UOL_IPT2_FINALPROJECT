@@ -2,7 +2,6 @@
 //controls
 function ControlsAndInput(){
 	
-	this.menuDisplayed = true;
 	this.player = new Player()
 	this.menu = new Menu(this.player)
 	this.legend = new Legend()
@@ -14,7 +13,6 @@ function ControlsAndInput(){
 
 	//make the window fullscreen or revert to windowed
 	this.mousePressed = function(){
-		console.log("mouse click")
 		this.menu.mousePressed()
 		this.songControls.mousePressed()
 		return false
@@ -31,7 +29,7 @@ function ControlsAndInput(){
 		}
 		if(keyCode == 27){
 			// ESC key pressed, toggle menu
-			this.menuDisplayed = !this.menuDisplayed;
+			this.menu.toggle_show()
 		}
 		vis.selectedVisual.keyPressed(keycode)
 		// if(keycode > 48 && keycode < 58){
@@ -49,9 +47,7 @@ function ControlsAndInput(){
 		textSize(34);
 		this.songControls.draw()
 		//only draw the menu if menu displayed is set to true.
-		if(this.menuDisplayed){
-			this.menu.draw();
-		}	
+		this.menu.draw();
 		this.legend.draw()
 		pop();
 
