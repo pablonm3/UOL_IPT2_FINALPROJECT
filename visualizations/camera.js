@@ -1,8 +1,17 @@
 
 
 
+// frames to wait after beat detected to start decaying beatCutoff
+var beatHoldFrames = 0;
+
 // what amplitude level can trigger a beat?
-var beatThreshold = 0.7; 
+var beatThreshold = 0.11; 
+
+// When we have a beat, beatCutoff will be reset to 1.1*beatThreshold, and then decay
+// Level must be greater than beatThreshold and beatCutoff before the next beat can trigger.
+var beatCutoff = 0;
+var beatDecayRate = 0.98; // how fast does beat cutoff decay?
+var framesSinceLastBeat = 0; // once this equals beatHoldFrames, beatCutoff starts to decay.
 
 
 function Camera() {
@@ -14,17 +23,20 @@ function Camera() {
 
   this.detectBeat = function(level) {
     // detects peaks in the givel level of frequency
-    if(this.beat_detected){
-      return true
-    }
-    if (level > beatThreshold){
-      this.beat_detected = true;
-      setTimeout(()=>{
-        this.beat_detected = false  
-      }, 25)
+    if (level  > beatCutoff && level > beatThreshold){
+      beatCutoff = level *1.2;
+      framesSinceLastBeat = 0;
       return true;
-    } 
-    return false;
+    } else{
+      if (framesSinceLastBeat <= beatHoldFrames){
+        framesSinceLastBeat ++;
+      }
+      else{
+        beatCutoff *= beatDecayRate;
+        beatCutoff = Math.max(beatCutoff, beatThreshold);
+      }
+      return false;
+    }
   }
 
   this.viz_0 = function(){
