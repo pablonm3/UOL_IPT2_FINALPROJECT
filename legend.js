@@ -2,7 +2,7 @@ function Legend(){
     this.width = 700
 	this.height = 30
 
-    this.base_options = ["[ESC] Toggle menu", "[SPACE] Toggle fullscreen"]
+    this.base_options = ["[ENTER] Toggle fullscreen", "[SPACE] Toggle menu"]
     this.options = this.base_options.slice()
 
     this.set_extra_options = function(extra_options){

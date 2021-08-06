@@ -21,21 +21,17 @@ function ControlsAndInput(){
 	//responds to keyboard presses
 	//@param keycode the ascii code of the keypressed
 	this.keyPressed = function(keycode){
-		if(keycode == 32){
-			//space key pressed, toggle fullscreen
-			//TODO: activate playback when user clicks on play rather that upon space button press
+		if(keycode == 13){
+			//ENTER key pressed, toggle fullscreen
 			var fs = fullscreen();
 			fullscreen(!fs);
 		}
-		if(keyCode == 27){
-			// ESC key pressed, toggle menu
+		if(keyCode == 32){
+			// SPACE key pressed, toggle menu
 			this.menu.toggle_show()
 		}
 		vis.selectedVisual.keyPressed(keycode)
-		// if(keycode > 48 && keycode < 58){
-		// 	var visNumber = keycode - 49;
-		// 	vis.selectVisual(vis.visuals[visNumber].name); 
-		// }
+
 	};
 
 	//draws the playback button and potentially the menu

@@ -7,7 +7,7 @@ var beatThreshold = 0.7;
 
 function Camera() {
 	Visualization.call(this, "Camera video", ["[←→] Change filter"])
-	this.filter_no = 1;
+	this.filter_no = 0;
   this.beat_detected = false;
   this.rotation_angle = 0
   var LAST_VIZ_INDEX = 1
