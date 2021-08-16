@@ -58,12 +58,14 @@ function GeometricShapes(){
     }
 
     this.next_colors = function(){
+        // change figure colors to what's next in the color list, if nothing left create new colors
         color_index += 1
         if(color_index >= colors.length){
             colors.push(this.gen_colors_object())
         }
     }
     this.back_colors = function(){
+        // change figure colors to what is before the current ones in the color list, if nothing left create new colors
         color_index -= 1
         if(color_index <=0){
             color_index = 0    

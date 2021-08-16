@@ -46,9 +46,11 @@ function Camera() {
       var high_energy = fourier.getEnergy("highMid")
       var level = low_energy / 255
       if(this.detectBeat(level)){
+        // when beat detected tint image with red color
         tint(200, 100, 100); 
       }
       else{
+        // when no beat detected tint image depending on frequencies, lower frequencies make colder colors. high frequencies make warm colors.
         tint(high_energy, mid_energy, low_energy);
       }
       image(capture, 0, 0, window.innerWidth, window.innerHeight); // place this between tint and filter got both options to take effect
@@ -58,10 +60,10 @@ function Camera() {
   this.viz_1 = function(){
     fourier.analyze()
 
-    //var level = amplitude.getLevel();
     var level = fourier.getEnergy("bass") / 255
 
     if(this.detectBeat(level)){
+      // when beat detected tint image violet and rotate it
       tint(70, 1, 150, 500); // ultraviolet
       this.rotation_angle += .1;
     }
